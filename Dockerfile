@@ -37,10 +37,10 @@ LABEL git_commit=$GIT_COMMIT
 
 COPY --from=binaries /bin/terragrunt /bin/kubectl /bin/terraform /bin/
 
-COPY terraform/ /terraform/
+COPY --from=binaries /terraform/ /terraform/
 
 WORKDIR /terraform/vsphere-rancher
 
-RUN touch terragrunt.hcl && terraform init
+RUN touch terragrunt.hcl && terraform init && rm -rf /tmp/*
 
 ENTRYPOINT ["terragrunt"]
