@@ -1,19 +1,18 @@
 #cloud-config
 packages:
-  - nfs-kernel-server
-  - curl
-  - wget
-  - git
-  - apt-transport-https
-  - ca-certificates
-  - gnupg-agent
-  - software-properties-common
-  - wget
+  - [nfs-kernel-server, "1:1.3.4-2.1ubuntu5.3"]
+  - [curl, "7.58.0-2ubuntu3.10"]
+  - [wget, "1.19.4-1ubuntu2.2"]
+  - [git, "1:2.17.1-1ubuntu0.7"]
+  - [apt-transport-https, "1.6.12ubuntu0.1"]
+  - [ca-certificates, "20190110~18.04.1"]
+  - [gnupg-agent, "2.2.4-1ubuntu1.2"]
+  - [software-properties-common,  "0.96.24.32.14"]
 runcmd:
   - ${env_proxy}
   - mkdir -p /mnt/sharedfolder
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - apt install -y docker-ce docker-ce-cli containerd.io
+  - apt install -y docker-ce=5:19.03.12~3-0~ubuntu-bionic docker-ce-cli=5:19.03.12~3-0~ubuntu-bionic containerd.io=1.2.13-2
   - usermod -aG docker ubuntu
   - nc -l 1234 # signal local-exec provisioner that cloud-init cmds are complete

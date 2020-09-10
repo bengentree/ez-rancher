@@ -33,8 +33,8 @@ write_files:
 runcmd:
   - ${env_proxy}
   - netplan apply
-  - apt update && apt install python3-pip -y  # requirement for vmware guestinfo datasource installer, needs to be run after network is configured
-  - curl -sSL https://raw.githubusercontent.com/vmware/cloud-init-vmware-guestinfo/v1.3.1/install.sh | GIT_REF=v1.3.1 sh - 2>&1 | tee install.out #Install cloud-init
+  - apt update && apt install python3-pip=9.0.1-2.3~ubuntu1.18.04.2 -y  # requirement for vmware guestinfo datasource installer, needs to be run after network is configured
+  - curl -sSL https://raw.githubusercontent.com/vmware/cloud-init-vmware-guestinfo/v1.3.1/install.sh | GIT_REF=v1.3.1 sh - 2>&1 #Install cloud-init
 power_state:
   timeout: 300
   mode: reboot
