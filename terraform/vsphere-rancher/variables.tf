@@ -140,9 +140,14 @@ variable "rancher_user_cluster_memoryMB" {
   default = 6144
 }
 
-variable "bootstrap_rancher" {
-  type    = string
+variable "rancher_create_node_template" {
+  type    = bool
   default = true
+}
+
+variable "rancher_node_template_name" {
+  type    = string
+  default = "vsphere-default"
 }
 
 variable "use_auto_dns_url" {
@@ -162,5 +167,15 @@ variable "https_proxy" {
 
 variable "no_proxy" {
   type    = string
-  default = ""
+  default = "127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+}
+
+variable "rancher_cluster_cidr" {
+  type    = string
+  default = "10.42.0.0/16"
+}
+
+variable "rancher_service_cidr" {
+  type    = string
+  default = "10.43.0.0/16"
 }

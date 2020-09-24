@@ -26,6 +26,9 @@ vm_template_name = "bionic-server-cloudimg-amd64"
 # (Optional) Default gateway (IPv4) to assign to nodes. Required if using static ips.
 # default_gateway  = "10.1.1.1"
 
+# (Optional) DNS servers to assign to the nodes
+# dns_servers = ["1.1.1.1", "8.8.8.8"]
+
 # ============================ #
 # VMware vSphere configuration #
 # ============================ #
@@ -70,17 +73,21 @@ vm_network = "network1"
 # (Optional) Automatically set rancher_server_url URL to <node ip>.nip.io
 # use_auto_dns_url = false
 
-# (Optional) Automatically configure rancher:
+# (Optional) Automatically configure rancher node template:
 # - Updates the default admin password, provided by the rancher_password variable.
 # - Enables telemetry 
 # - Creates cloud credentials for vCenter
 # - Creates node template for vCenter
-# bootstrap_rancher = true
+# rancher_create_node_template = true
 
-# rancher default admin password
-rancher_password = "solidfire"
+# (Conditionally optional) rancher default admin password 
+# Note: The value is used only when rancher_create_node_template=true
+rancher_password = "rancher"
 
-# (Optional) Create a default user cluster. Requires bootstrap_rancher.
+# (Optional) Name the node template so it is familiar to your users. Requires rancher_create_node_template.
+# rancher_node_template_name = "vsphere-default"
+
+# (Optional) Create a default user cluster. Requires rancher_create_node_template.
 # rancher_create_user_cluster = false
 
 # (Optional) Default user cluster name
@@ -99,5 +106,11 @@ rancher_password = "solidfire"
 # (Optional) HTTPS proxy server. Also specify http_proxy.
 # https_proxy = "http://10.1.1.1:3128"
 
-# (Optional) Comma separated string of URLs that should be excluded from proxying. Ignored if no proxy is set.
-# no_proxy = "localhost,127.0.0.1,docker-registry.example.com,.corp"
+# (Optional) Comma separated string of hostnames or IP addresses (CIDR notation) that should be excluded from proxying. Ignored if no proxy is set.
+# no_proxy = "127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+
+# (Optional) The CIDR pool used to assign IP addresses to pods in the cluster
+# rancher_cluster_cidr = "10.42.0.0/16"
+
+# (Optional) The CIDR pool used to assign IP addresses to services in the cluster
+# rancher_service_cidr = "10.43.0.0/16"
