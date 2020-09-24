@@ -90,8 +90,8 @@ rancher_password = "solidfire"
 # Other configuration #
 # =================== #
 
-# (Optional) deliverables directory path. Defaults to ./deliverables
-# deliverables_path = "/deliverables"
+# (Optional) Deliverables directory path. Defaults to ./deliverables
+# deliverables_path = "./deliverables"
 
 # (Optional) HTTP proxy server. Also specify https_proxy.
 # http_proxy = "http://10.1.1.1:3128"
