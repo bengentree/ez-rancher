@@ -1,4 +1,3 @@
-@Library('slack-notifier-lib')
 void setBuildStatus(String message, String state) {
   step([
       $class: "GitHubCommitStatusSetter",
@@ -136,7 +135,6 @@ spec:
                     docker rmi ez-rancher:${COMMIT_SLUG}
                     """
             }
-            notifySlack currentBuild.result
         }
         success {
             setBuildStatus("Build succeeded", "SUCCESS");
